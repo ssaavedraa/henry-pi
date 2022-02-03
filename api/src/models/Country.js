@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     area: {
-      type: DataTypes.STRING,
+      type: DataTypes.BIGINT,
       allowNull: true
     },
     population: {
