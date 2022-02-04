@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {Country, Activity} = require('../db')
+const {Country, Activity} = require('../db');
+const db = require('../db');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -13,12 +14,13 @@ const router = Router();
 const getApiInfo = async () => {//Traigo la informacion de la API
     const apiUrl = await axios.get('https://restcountries.com/v3/all');//Peticion a la API
     const apiInfo = await apiUrl.data.map(country => {
+        if (!country.capital) country.capital = ['N/A']
         return {//retorna unicamente toda la informacion que se necsita para la DB
-            id: country.cca3,
+            id: country.cca3.toUpperCase(),
             name: country.name.common,
-            img: country.flags.svg,
-            continent: country.continents,//array
-            capital: country.capital,//array
+            img: country.flags[0],
+            continent: country.continents[0],//array
+            capital: country.capital[0],//array
             subregion: country.subregion,
             area: country.area,//bigint
             population: country.population//bigint
@@ -29,35 +31,59 @@ const getApiInfo = async () => {//Traigo la informacion de la API
 
 const getDbInfo = async () => {//trae toda la informacion almacenada ne la DB
     return await Country.findAll({
-        include:{
-            model:Activity,
-            attributes: ['name'],//que atributos quiero que se incluyan
-            through: {
-                attributes: [],
-            }
-        }
+       raw: true
     })
 }
 
-const getAllCountries = async () => {
-    const apiInfo = await getApiInfo();
-    const dbInfo = await getDbInfo();
-    const infoTotal = apiInfo.concat(dbInfo);
-    return infoTotal;
+const getCountry = async (countryId) => {
+    return await Country.findByPk(countryId)
 }
 
-router.get('/', (req, res) => {
-    res.send('Server working')
+router.get('/countries', async(req, res) => {
+    let {name} = req.query
+    let dbCountries = await getDbInfo();
+
+    if(name){
+        if(dbCountries.length === 0){
+            return res.status(404).send('Country not found')
+        }else{
+            let country = await dbCountries.filter(country => country.name.toLowerCase() === name.toLowerCase())
+            if(country.length === 0){
+                return res.status(404).send('Country not found')
+            }
+            return res.status(200).send(country)
+        }
+    }else{
+
+        if(dbCountries.length === 0){
+            let apiCountries = await getApiInfo();
+            await apiCountries.forEach(async country => {
+                let newCountry = {
+                    id: country.id,
+                    name: country.name,
+                    img: country.img,
+                    continent: country.continent,
+                    capital: country.capital,
+                    subregion: country.subregion,
+                    area: country.area,
+                    population: country.population
+                }
+                Country.create(newCountry)
+            })
+            return res.status(200).send(apiCountries)
+        }
+        return res.status(200).send(dbCountries)
+    }
+
 })
 
-router.get('/countries', async(req, res) => {
-    const countryId = req.query.countryId
-    let totalCountries = await getAllCountries();
-    if(countryId){
-        let countryName = await totalCountries.filter(country => country.id.toUpperCase().includes(countryId.toUpperCase()))
-        countryName ? res.status(200).send(countryName) : res.status(404).send('No se encuentra el país')//Busca ? encontraste : no encontraste
+router.get('/countries/:countryId', async (req, res) => {
+    let {countryId} = req.params
+    let country = await getCountry(countryId.toUpperCase())
+    if(country){
+        return res.status(200).send(country)
     }else{
-        res.status(200).send(totalCountries);
+        return res.status(404).send('Country not found')
     }
 })
 
@@ -69,6 +95,19 @@ router.post('/activity', async (req, res) => {
         season
     } = req.body
 
+    let newActivity ={
+        name,
+        difficulty,
+        duration,
+        season
+    }
+
+    try{
+        await Activity.create(newActivity);
+        res.status(201).send('Activity created succesfully')
+    }catch(err){
+        res.status(400).send('Wrong data on activity')
+    }
 })
 
 module.exports = router;

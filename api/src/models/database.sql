@@ -8,3 +8,6 @@ CREATE TABLE IF NOT EXISTS country(
     area BIGINT,
     population BIGINT
 );
+
+
+INSERT INTO countries ("id", "name", "img", "continent", "capital", "subregion", "area", population) values (abs, "Colombia", "hhtpimg.com", "continent", "capital", "subregion", 5.5, 1234);
