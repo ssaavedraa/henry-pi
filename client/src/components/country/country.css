@@ -1,0 +1,32 @@
+.country-text h1{
+    font-size: 1.5rem;
+}
+.country-text h2{
+    font-size: 1.3rem;
+}
+
+.country-card{
+    width: 20rem;
+    height: 10.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 1rem;
+    border-radius: 1rem;
+    transform: scale(1);
+}
+
+.country-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100vh;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    padding-bottom: 0.5rem;
+    padding-left: 0.8rem;
+    border-radius: 1rem;
+}
+
+.country-card:hover{
+    transform: scale(1.05);
+}

@@ -1,0 +1,29 @@
+*{
+    color:#edf0f1;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 10% 20% auto 10%;
+    grid-template-rows: auto 3.5rem;
+    grid-template-areas: "a b c d" "a b e d";
+}
+
+.filter{
+    grid-area: b;
+}
+
+.cards{
+    grid-area: c;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.paging{
+    margin-top: 0.5rem;
+    grid-area: e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
