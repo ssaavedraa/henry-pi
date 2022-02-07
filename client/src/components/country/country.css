@@ -1,8 +1,8 @@
 .country-text h1{
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .country-text h2{
-    font-size: 1.3rem;
+    font-size: 0.8rem;
 }
 
 .country-card{
@@ -10,10 +10,10 @@
     height: 10.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    margin: 1rem;
+    margin: 0.5rem;
     border-radius: 1rem;
     transform: scale(1);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .country-text{
@@ -21,12 +21,14 @@
     flex-direction: column;
     justify-content: flex-end;
     height: 100vh;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
     padding-bottom: 0.5rem;
     padding-left: 0.8rem;
     border-radius: 1rem;
 }
 
 .country-card:hover{
-    transform: scale(1.05);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-3%);
+    cursor: pointer;
 }

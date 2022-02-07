@@ -6,6 +6,7 @@ export default function Country({id, name, img, continent}){
     const background ={
         background : `url(${img}) `,
         backgroundSize: '100% 100%',
+        backgroundPosition: 'center'
     }
 
     return(

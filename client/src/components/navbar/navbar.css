@@ -8,7 +8,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
+    background-color: rgb(0, 8, 51);
+    padding: 1rem 10%;
 }
 
 .nav-link{

@@ -9,8 +9,6 @@ export default function Paging({countriesPerPage, allCountries, paging, currentP
 
     activePage = currentPage
 
-    console.log(activePage, 'active page' , currentPage, 'current page')
-
     function changePage(page){
         setActivePage(page + 1)
         paging(page)
@@ -24,7 +22,6 @@ export default function Paging({countriesPerPage, allCountries, paging, currentP
         <div className="paging-container">
         {pageNumbers && pageNumbers.reverse().map(page => {
             if(page === currentPage -1){
-                console.log('son iguales', page, currentPage -1)
                 return(
                     <div className="selected-page" id={page} key={page}>
                         <label htmlFor={page} className='page-label'  onClick={(e) => changePage(page)} >

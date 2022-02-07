@@ -53,7 +53,7 @@ export default function Countries(){
         <div className="main-container">
             <Nav onSearch={onSearch} />
             <div className="grid-container">
-                <div className="filter">
+                <div className="filters">
                     <Filter  handleContinentFilter={handleContinentFilter} handleSortingCountries={handleSortingCountries} handleSortingPopulation={handleSortingPopulation}/>
                 </div>
                 <div className="cards">
