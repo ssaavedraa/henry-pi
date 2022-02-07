@@ -4,6 +4,7 @@
 
 filter{
     max-width: 250px;
+    height: 100%;
 }
 
 .filter-content{

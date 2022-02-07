@@ -30,7 +30,7 @@
     cursor: pointer;
 }
 
-.active-page{
+.inactive-page{
     background-color: rgba(255, 255, 255, 0.3);
     display: flex;
     justify-content: center;
@@ -41,7 +41,16 @@
     z-index: -1;
 }
 
-.radio-page:checked + .active-page{
+.active-page{
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.3rem;
+}
+
+.active-page{
     transform: scale(1.2);
     transition: transform 0.5s;
     background-color: #edf0f1;
