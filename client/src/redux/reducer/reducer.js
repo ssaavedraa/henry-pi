@@ -68,7 +68,6 @@ function rootReducer(state = initialState, action){
         case GET_COUNTRY:
             return{
                 ...state,
-                countries: action.payload,
                 country: action.payload
             }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
+import { Link } from "react-router-dom";
 import { getAllCountries, filterByContinent, sortCountries, sortPopulation, getCountry } from "../../redux/actions/actions";
 import Country from "../country/country.component";
 import Filter from "../filter/filter.component";
@@ -59,13 +60,14 @@ export default function Countries(){
                 <div className="cards">
                     {
                        currentCountries && currentCountries.map(country => {
-                          return <Country
-                            key={country.id}
-                            id={country.id}
-                            name={country.name}
-                            img={country.img}
-                            continent={country.continent}
-                           />
+                          return <Link to={`/country/${country.id.toLowerCase()}`} style={{textDecoration: 'none'}} key={country.id}>
+                            <Country
+                                id={country.id}
+                                name={country.name}
+                                img={country.img}
+                                continent={country.continent}
+                            />
+                           </Link>
                        })
                     }
                 </div>
