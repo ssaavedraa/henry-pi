@@ -1,0 +1,155 @@
+.activity-form{
+    grid-area: b;
+    margin: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.field{
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0.5rem;
+    margin-top: 3rem;
+    height: 5rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.field label{
+    font-size: 2rem;
+    padding: 0.4rem;
+}
+
+.field input{
+    font-size: 1.7rem;
+    padding: 0.5rem;
+    color: black;
+}
+
+.field#name{
+    width: 50%;
+}
+
+.field#difficulty{
+    width: 50% ;
+}
+
+#difficulty input{
+    display: none;
+}
+
+.rating{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 2rem;
+    position: relative;
+    transform: rotateY(180deg);
+}
+
+.rating #star-label{
+    display: block;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.rating #star-label:before{
+    font-family: fontAwesome;
+    content: '\f005';
+    position: relative;
+    display: block;
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.rating #star-label:after{
+    font-family: fontAwesome;
+    content: '\f005';
+    position: absolute;
+    top: 0;
+    display: block;
+    color: rgb(0, 8, 51);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transform: scale(0%);
+    transition: transform 0.5s;
+}
+
+.rating #star-label:hover::after,
+.rating #star-label:hover ~ #star-label::after,
+.rating input:checked ~ #star-label:after{
+    transform: scale(100%);
+}
+
+.field#duration{
+    width: 30%;
+}
+
+.field#duration input{
+    text-align: center;
+}
+
+.field#season{
+    width: 30%;
+}
+
+.create-button{
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.create-button button{
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    background-color: rgb(0, 8, 51);
+    color: #edf0f1;
+    font-size: 1.5rem;
+}
+
+.create-button button:hover{
+    cursor: pointer;
+}
+
+#season-dropdown{
+    width: 70%;
+    height: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.time-picker #hours{
+    width: 60%;
+    padding: 0;
+    height: 80%;
+    flex: none
+}
+
+.time-picker{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.time-icon h1{
+    height: 100%;
+}
+
+.time-icon:after{
+    font-family: fontAwesome;
+    content: '\f017';
+    font-size: 2rem;
+    color: rgb(0, 8, 51);
+}
+
+.create-button button:hover{
+    transform: scale(1.05);
+}
+
+.create-button button:active{
+    transform: scale(1);
+}

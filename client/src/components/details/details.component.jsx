@@ -5,6 +5,7 @@ import { getCountry } from "../../redux/actions/actions";
 import Nav from "../navbar/navbar.component";
 import './details.css'
 import { useParams } from "react-router-dom";
+import Activity from "../activity/activity.component";
 
 export default function Details(){
 
@@ -14,7 +15,7 @@ export default function Details(){
 
     useEffect(() => {
         dispatch(getCountry(countryId))
-    }, [dispatch])
+    },)
 
     const country = useSelector((state) => state.country)
 
@@ -42,7 +43,7 @@ export default function Details(){
                                 <li>Population: {Intl.NumberFormat('en-US').format(country.population)} habitants </li>
                             </ul>
                             <div className="activities">
-                                No activities found
+                                <Activity />
                             </div>
                         </div>
                     </div>
