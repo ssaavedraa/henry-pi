@@ -42,17 +42,13 @@ export default function Countries(){
         setSortName(`Sorted ${value}`)
     }
 
-    const onSearch = (name) => {
-        dispatch(getCountry(name, dispatch))
-    }
-
     useEffect (() => {
         dispatch(getAllCountries());
     },[dispatch])
 
     return(
         <div className="main-container">
-            <Nav onSearch={onSearch} />
+            <Nav />
             <div className="grid-container">
                 <div className="filters">
                     <Filter  handleContinentFilter={handleContinentFilter} handleSortingCountries={handleSortingCountries} handleSortingPopulation={handleSortingPopulation}/>

@@ -1,4 +1,4 @@
-import { GET_ALL_COUNTRIES, GET_COUNTRY, SORT_COUNTRIES, SORT_POPULATION } from "../actions/actions";
+import { CREATE_ACTIVITY, GET_ALL_COUNTRIES, GET_COUNTRY, SORT_COUNTRIES, SORT_POPULATION } from "../actions/actions";
 import { FILTER_BY_CONTINENT } from "../actions/actions";
 
 const initialState = {

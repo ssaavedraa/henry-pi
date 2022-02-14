@@ -31,12 +31,29 @@ const getApiInfo = async () => {//Traigo la informacion de la API
 
 const getDbInfo = async () => {//trae toda la informacion almacenada ne la DB
     return await Country.findAll({
-       raw: true
+        include:{
+            model: Activity,
+            attributes: ['name', 'difficulty', 'duration', 'season'],
+            through: {
+                attributes: []
+            }
+        }
     })
 }
 
 const getCountry = async (countryId) => {
-    return await Country.findByPk(countryId)
+    return await Country.findAll({
+        where: {
+            id: countryId,
+        },
+        include:{
+            model: Activity,
+            attributes: ['name', 'difficulty', 'duration', 'season'],
+            through: {
+                attributes: []
+            }
+        }
+    })
 }
 
 router.get('/countries', async(req, res) => {
@@ -92,22 +109,51 @@ router.post('/activity', async (req, res) => {
         name,
         difficulty,
         duration,
-        season
+        season,
+        countries
     } = req.body
 
-    let newActivity ={
-        name,
-        difficulty,
-        duration,
-        season
-    }
+    console.log(name)
+    console.log(difficulty)
+    console.log(duration)
+    console.log(season)
+    console.log(countries)
 
     try{
-        await Activity.create(newActivity);
+        let createdActivity = await Activity.create({
+            name,
+            difficulty,
+            duration,
+            season
+        })
+
+        let countrieDb = await Country.findAll({
+            where:{name: countries}
+        })
+
+        createdActivity.addCountry(countrieDb)
         res.status(201).send('Activity created succesfully')
-    }catch(err){
+    }
+    catch(err){
         res.status(400).send('Wrong data on activity')
     }
+
+    router.post('/activity', async (req, res) => {
+        const { name , dificulty, duration, countries } = req.body
+
+        let activityCreated = await Activity.create({
+            name,
+            dificulty,
+            duration,
+        });
+
+        let countrieDb = await Country.findAll({
+            where: { name: countries}
+        });
+
+        activityCreated.addCountry(countrieDb)
+        res.send(' creado con exito');
+    });
 })
 
 module.exports = router;

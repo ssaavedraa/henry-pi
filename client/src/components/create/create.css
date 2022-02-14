@@ -91,6 +91,7 @@
 
 .field#duration input{
     text-align: center;
+    width: 50%;
 }
 
 .field#season{
@@ -115,11 +116,16 @@
     cursor: pointer;
 }
 
-#season-dropdown{
+#season-dropdown,
+#continent-dropdown,
+#country-dropdown{
     width: 70%;
     height: 2rem;
     font-size: 1.5rem;
     text-align: center;
+    border-radius: 0.5rem;
+    background-color: white;
+    border: rgba(0, 0, 0, 0.1) 2px solid;
 }
 
 .time-picker #hours{
@@ -152,4 +158,42 @@
 
 .create-button button:active{
     transform: scale(1);
+}
+
+.field#continent, .field#country{
+    width: 40%;
+}
+
+.country-selection{
+    width: 100%;
+    padding: 0.2rem 10rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.selected-countries{
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.selected-country{
+    background-color: rgba(255, 255, 255, 0.5);
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0.3rem 0.3rem;
+    margin-left: 0.4rem;
+    margin-top: 0.4rem;
+    border-radius: 0.5rem;
+}
+
+.selected-country p {
+    padding-left: 1rem;
+}
+
+.selected-country .delete:hover{
+    cursor: pointer;
+    color: red;
+    transform: scale(1.1);
 }

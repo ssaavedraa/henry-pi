@@ -18,8 +18,17 @@ export default function Paging({countriesPerPage, allCountries, paging, currentP
         pageNumbers.push(i)
     }
 
+
     return(
         <div className="paging-container">
+        <div className="selected-page">
+            <label htmlFor='prev' className='page-label' onClick={(e) => changePage(currentPage)} >
+                <input type="radio" name='page' id={activePage} className='radio-page' />
+                <div className="inactive-page">
+                    {'>'}
+                </div>
+            </label>
+        </div>
         {pageNumbers && pageNumbers.reverse().map(page => {
             if(page === currentPage -1){
                 return(
@@ -44,6 +53,14 @@ export default function Paging({countriesPerPage, allCountries, paging, currentP
                     </div>
             )
         })}
+        <div className="selected-page">
+            <label htmlFor='prev' className='page-label' onClick={(e) => changePage(currentPage-2)} >
+                <input type="radio" name='page' id={activePage} className='radio-page' />
+                <div className="inactive-page">
+                    {'<'}
+                </div>
+            </label>
+        </div>
         </div>
     )
 }

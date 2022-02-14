@@ -15,9 +15,10 @@ export default function Details(){
 
     useEffect(() => {
         dispatch(getCountry(countryId))
-    },)
+    },[dispatch])
 
     const country = useSelector((state) => state.country)
+    console.log(country)
 
     return(
         <div className="details-container">
@@ -42,9 +43,7 @@ export default function Details(){
                                 <li>Area: {Intl.NumberFormat('en-US').format(country.area)} Km&sup2;</li>
                                 <li>Population: {Intl.NumberFormat('en-US').format(country.population)} habitants </li>
                             </ul>
-                            <div className="activities">
-                                <Activity />
-                            </div>
+                            <Activity activities={country.activities}/>
                         </div>
                     </div>
                 </div>

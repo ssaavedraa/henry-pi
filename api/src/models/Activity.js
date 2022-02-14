@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
             allowNull: true
         },
         duration: {
-            type: DataTypes.TIME,
+            type: DataTypes.STRING,
             allowNull: true
         },
         season: {
