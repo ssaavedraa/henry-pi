@@ -4,13 +4,14 @@ import './paging.css'
 
 export default function Paging({countriesPerPage, allCountries, paging, currentPage}) {
     const pageNumbers = []
-    var [activePage, setActivePage] = useState(currentPage);
+    console.log(currentPage)
+    var [activePage, setActivePage] = useState(currentPage -1);
 
     activePage = currentPage
 
     function changePage(page){
-        setActivePage(page + 1)
-        paging(page)
+        setActivePage(page - 1)
+        paging(page - 1)
     }
 
     for(let i = 1; i <= Math.ceil(allCountries/countriesPerPage); i++){
@@ -27,7 +28,7 @@ export default function Paging({countriesPerPage, allCountries, paging, currentP
     return(
         <div className="paging-container">
         {   currentPage < pageNumbers[pageNumbers.length -1 ] && <div className="selected-page">
-                                    <label htmlFor='prev' className='page-label' onClick={(e) => changePage(currentPage)} >
+                                    <label htmlFor='prev' className='page-label' onClick={(e) => changePage(currentPage + 1)} >
                                         <input type="radio" name='page' id={activePage} className='radio-page' />
                                         <div className="inactive-page">
                                             {'>'}
@@ -61,7 +62,7 @@ export default function Paging({countriesPerPage, allCountries, paging, currentP
         })}
         {
             currentPage > 1 && <div className="selected-page">
-                                    <label htmlFor='prev' className='page-label' onClick={(e) => changePage(currentPage-2)} >
+                                    <label htmlFor='prev' className='page-label' onClick={(e) => changePage(currentPage-1)} >
                                         <input type="radio" name='page' id={activePage} className='radio-page' />
                                         <div className="inactive-page">
                                             {'<'}
