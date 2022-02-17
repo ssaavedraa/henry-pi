@@ -4,7 +4,6 @@ import './paging.css'
 
 export default function Paging({countriesPerPage, allCountries, paging, currentPage}) {
     const pageNumbers = []
-
     var [activePage, setActivePage] = useState(currentPage);
 
     activePage = currentPage
@@ -14,23 +13,30 @@ export default function Paging({countriesPerPage, allCountries, paging, currentP
         paging(page)
     }
 
-    for(let i = 0; i < Math.ceil(allCountries/countriesPerPage); i++){
+    for(let i = 1; i <= Math.ceil(allCountries/countriesPerPage); i++){
         pageNumbers.push(i)
     }
 
+    let pages = pageNumbers.slice(0, 5)
+
+    if(!pages.includes(currentPage + 1)){
+        pages = pageNumbers.slice(currentPage-3, currentPage+2)
+    }
+    console.log(currentPage, pages)
 
     return(
         <div className="paging-container">
-        <div className="selected-page">
-            <label htmlFor='prev' className='page-label' onClick={(e) => changePage(currentPage)} >
-                <input type="radio" name='page' id={activePage} className='radio-page' />
-                <div className="inactive-page">
-                    {'>'}
-                </div>
-            </label>
-        </div>
-        {pageNumbers && pageNumbers.reverse().map(page => {
-            if(page === currentPage -1){
+        {   currentPage < pageNumbers[pageNumbers.length -1 ] && <div className="selected-page">
+                                    <label htmlFor='prev' className='page-label' onClick={(e) => changePage(currentPage)} >
+                                        <input type="radio" name='page' id={activePage} className='radio-page' />
+                                        <div className="inactive-page">
+                                            {'>'}
+                                        </div>
+                                    </label>
+                                </div>
+        }
+        {pages && pages.reverse().map(page => {
+            if(page === currentPage){
                 return(
                     <div className="selected-page" id={page} key={page}>
                         <label htmlFor={page} className='page-label'  onClick={(e) => changePage(page)} >
@@ -47,20 +53,22 @@ export default function Paging({countriesPerPage, allCountries, paging, currentP
                         <label htmlFor={page} className='page-label'  onClick={(e) => changePage(page)} >
                             <input type="radio" name='page' id={activePage} className='radio-page' />
                             <div className="inactive-page">
-                                {page + 1}
+                                {page}
                             </div>
                         </label>
                     </div>
             )
         })}
-        <div className="selected-page">
-            <label htmlFor='prev' className='page-label' onClick={(e) => changePage(currentPage-2)} >
-                <input type="radio" name='page' id={activePage} className='radio-page' />
-                <div className="inactive-page">
-                    {'<'}
-                </div>
-            </label>
-        </div>
+        {
+            currentPage > 1 && <div className="selected-page">
+                                    <label htmlFor='prev' className='page-label' onClick={(e) => changePage(currentPage-2)} >
+                                        <input type="radio" name='page' id={activePage} className='radio-page' />
+                                        <div className="inactive-page">
+                                            {'<'}
+                                        </div>
+                                    </label>
+                                </div>
+        }
         </div>
     )
 }

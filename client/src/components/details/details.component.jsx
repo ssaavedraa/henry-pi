@@ -19,8 +19,6 @@ export default function Details(){
     },[dispatch,countryId])
 
     const country = useSelector((state) => state.country)
-    console.log(country)
-
     return(
         <div className="details-container">
             <Nav />
@@ -44,7 +42,7 @@ export default function Details(){
                                 <li>Area: {Intl.NumberFormat('en-US').format(country.area)} Km&sup2;</li>
                                 <li>Population: {Intl.NumberFormat('en-US').format(country.population)} habitants </li>
                             </ul>
-                            <Activity activities={country.activities}/>
+                            {country.activities && <Activity activities={country.activities}/>}
                         </div>
                     </div>
                 </div>

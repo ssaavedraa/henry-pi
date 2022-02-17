@@ -70,29 +70,6 @@ export default function Filter({handleContinentFilter, handleSortingCountries, h
                         All
                     </label>
                 </div>
-                <div className="filter-content" id="filter-season">
-                    <h2>Filter by activity season</h2>
-                    <label htmlFor="summer" className="radio-label" onChange={(e) => handleActivityFilter(e.target.value)} >
-                        <input type="radio" name="season-radio" id="summer" value='summer' className="input-radio" />
-                        <div className="radio"></div>
-                        Summer
-                    </label>
-                    <label htmlFor="autumm" className="radio-label" onChange={(e) => handleActivityFilter(e.target.value)} >
-                        <input type="radio" name="season-radio" id="autumm" value='autumm' className="input-radio" />
-                        <div className="radio"></div>
-                        Autumm
-                    </label>
-                    <label htmlFor="winter" className="radio-label" onChange={(e) => handleActivityFilter(e.target.value)} >
-                        <input type="radio" name="season-radio" id="winter" value='winter' className="input-radio" />
-                        <div className="radio"></div>
-                        Winter
-                    </label>
-                    <label htmlFor="spring" className="radio-label" onChange={(e) => handleActivityFilter(e.target.value)} >
-                        <input type="radio" name="season-radio" id="spring" value='spring' className="input-radio" />
-                        <div className="radio"></div>
-                        Spring
-                    </label>
-                </div>
             </div>
         </div>
     )

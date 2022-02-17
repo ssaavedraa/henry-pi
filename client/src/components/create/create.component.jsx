@@ -54,6 +54,7 @@ export default function Create(){
         console.log(payload)
         const response = await axios.post('http://localhost:3001/activity', payload)
         console.log(response)
+        if(response.status) alert(response.data)
     }
 
     const dataValidation = (name, duration, difficulty, season, selectedCountries) => {
@@ -100,9 +101,7 @@ export default function Create(){
         //difficulty
         let season = document.getElementById('season-dropdown').value
         //selectedcountries
-        let countries = [1, 2, 2, 3, 4]
         if(dataValidation(name, duration, difficulty, season, selectedCountries)){
-            console.log(typeof name, typeof duration, typeof difficulty, typeof season, typeof countries)
             postActivity({
                 name,
                 duration,

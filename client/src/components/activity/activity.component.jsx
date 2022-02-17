@@ -51,7 +51,7 @@ export default function Activity({activities}){
                 stars.push(i)
             }
             return(
-                <div className="activity-card" key={activity.name}>
+                <div className="activity-card" key={activity.id}>
                     <h3>{activity.name}</h3>
                     <div className="stars-container">
                     {stars.map(s => <p id="stars"></p>)}
