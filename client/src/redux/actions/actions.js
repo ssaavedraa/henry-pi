@@ -7,6 +7,7 @@ export const FILTER_BY_CONTINENT = 'FILTER_BY_CONTINENT'
 export const SORT_COUNTRIES = 'SORT_COUNTRIES'
 export const SORT_POPULATION = 'SORT_POPULATION'
 export const SEARCH_COUNTRY ='SEARCH_COUNTRY'
+export const FILTER_BY_ACTIVITY_SEASON = 'FILTER_BY_ACTIVITY_SEASON'
 
 export const getAllCountries = () => async (dispatch) => {
     var response = await axios.get('http://localhost:3001/countries')

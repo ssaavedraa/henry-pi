@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
-import { getAllCountries, filterByContinent, sortCountries, sortPopulation, getCountry } from "../../redux/actions/actions";
+import { getAllCountries, filterByContinent, sortCountries, sortPopulation } from "../../redux/actions/actions";
 import Country from "../country/country.component";
 import Filter from "../filter/filter.component";
+import Footer from "../footer/footer.component";
 import Nav from "../navbar/navbar.component";
 import Paging from "../paging/paging.component";
 import './countries.css'
@@ -51,7 +52,8 @@ export default function Countries(){
             <Nav />
             <div className="grid-container">
                 <div className="filters">
-                    <Filter  handleContinentFilter={handleContinentFilter} handleSortingCountries={handleSortingCountries} handleSortingPopulation={handleSortingPopulation}/>
+                    <Filter  handleContinentFilter={handleContinentFilter} handleSortingCountries={handleSortingCountries} handleSortingPopulation={handleSortingPopulation}
+                    />
                 </div>
                 <div className="cards">
                     {
@@ -75,6 +77,7 @@ export default function Countries(){
                         currentPage={currentPage}
                     />
                 </div>
+                <Footer />
             </div>
         </div>
     )

@@ -5,6 +5,7 @@ import { getAllCountries, filterByContinent, sortCountries } from "../../redux/a
 import axios from "axios";
 import Nav from "../navbar/navbar.component";
 import './create.css'
+import Footer from "../footer/footer.component";
 
 export default function Create(){
 
@@ -196,6 +197,7 @@ export default function Create(){
 
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

@@ -6,6 +6,7 @@ import Nav from "../navbar/navbar.component";
 import './details.css'
 import { useParams } from "react-router-dom";
 import Activity from "../activity/activity.component";
+import Footer from "../footer/footer.component";
 
 export default function Details(){
 
@@ -15,7 +16,7 @@ export default function Details(){
 
     useEffect(() => {
         dispatch(getCountry(countryId))
-    },[dispatch])
+    },[dispatch,countryId])
 
     const country = useSelector((state) => state.country)
     console.log(country)
@@ -48,6 +49,7 @@ export default function Details(){
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

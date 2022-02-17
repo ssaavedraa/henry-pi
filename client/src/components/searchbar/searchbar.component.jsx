@@ -1,15 +1,12 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import './searchbar.css'
 
 export default function SearchBar(){
 
     const [country, setCountry] = useState('');
-    const dispatch = useDispatch()
-    const allCountries = useSelector((state) => state.allCountries)
 
     async function onSearch(e){
         if(!country){

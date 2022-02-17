@@ -59,3 +59,17 @@ img{
     padding: 1rem 2rem;
     font-size: 80px;
 }
+
+#sign{
+    opacity: 80%;
+    width: auto;
+    height: 45%;
+    position: absolute;
+    margin-top: 31%;
+    margin-left: auto;
+    margin-right: 15%;
+}
+
+#sign{
+    z-index: 0;
+}
