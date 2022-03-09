@@ -2,6 +2,7 @@ const { Router } = require('express');
 const axios = require('axios');
 const {Country, Activity} = require('../db');
 const db = require('../db');
+const {Op} = require('sequelize')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -51,6 +52,16 @@ const getCountry = async (countryId) => {
             attributes: ['id', 'name', 'difficulty', 'duration', 'season'],
             through: {
                 attributes: []
+            }
+        }
+    })
+}
+
+function getByName(name){
+    return Country.findAll({
+        where: {
+            name:{
+                [Op.iLike]: '%' + name + '%'
             }
         }
     })
@@ -113,12 +124,6 @@ router.post('/activity', async (req, res) => {
         countries
     } = req.body
 
-    console.log(name)
-    console.log(difficulty)
-    console.log(duration)
-    console.log(season)
-    console.log(countries)
-
     try{
         let createdActivity = await Activity.create({
             name,
@@ -131,29 +136,45 @@ router.post('/activity', async (req, res) => {
             where:{name: countries}
         })
 
-        createdActivity.addCountry(countrieDb)
+        await createdActivity.addCountry(countrieDb)
         res.status(201).send('Activity created succesfully')
     }
     catch(err){
         res.status(400).send('Wrong data on activity')
     }
 
-    router.post('/activity', async (req, res) => {
-        const { name , dificulty, duration, countries } = req.body
+})
 
-        let activityCreated = await Activity.create({
+router.post('/country', async (req, res) => {
+
+    try{
+        let {
+            id,
             name,
-            dificulty,
-            duration,
-        });
+            img,
+            continent,
+            capital,
+            subregion,
+            area,
+            population
+        } = req.body
 
-        let countrieDb = await Country.findAll({
-            where: { name: countries}
-        });
+        let newCountry = await Country.create({
+            id,
+            name,
+            img,
+            continent,
+            capital,
+            subregion,
+            area,
+            population
+        })
+        res.status(201).send(newCountry)
+    }
+    catch(e){
+        res.status(400).send(e)
+    }
 
-        activityCreated.addCountry(countrieDb)
-        res.send(' creado con exito');
-    });
 })
 
 module.exports = router;
