@@ -52,7 +52,7 @@ export default function Create(){
 
     const postActivity = async (payload) => {
         console.log(payload)
-        const response = await axios.post('http://localhost:3001/activity', payload)
+        const response = await axios.post('/activity', payload)
         console.log(response)
         if(response.status) alert(response.data)
     }
