@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
 
-let sequelize = 
+let sequelize =
   process.env.NODE_ENV === 'production' ?
     new Sequelize({
       database: DB_NAME,
