@@ -12,8 +12,8 @@ export default function SearchBar(){
         if(!country){
             alert('Please enter a valid country')
         }
-        let response = await axios.get(`http://localhost:3001/countries?name=${country}`)
-        window.location.replace(`http://localhost:3000/country/${response.data[0].id}`)
+        let response = await axios.get(`/countries?name=${country}`)
+        window.location.replace(`/country/${response.data[0].id}`)
         setCountry('')
     }
 
