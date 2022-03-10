@@ -10,7 +10,7 @@ export const SEARCH_COUNTRY ='SEARCH_COUNTRY'
 export const FILTER_BY_ACTIVITY_SEASON = 'FILTER_BY_ACTIVITY_SEASON'
 
 export const getAllCountries = () => async (dispatch) => {
-    var response = await axios.get('http://localhost:3001/countries')
+    var response = await axios.get('/countries')
     return dispatch({
         type:GET_ALL_COUNTRIES,
         payload: response.data
@@ -40,7 +40,7 @@ export const sortPopulation = (payload) => {
 
 export const getCountry = (payload) => async (dispatch) => {
     try{
-        const response = await axios.get(`http://localhost:3001/countries/${payload}`)
+        const response = await axios.get(`/countries/${payload}`)
         return dispatch({
             type:GET_COUNTRY,
             payload: response.data[0]
@@ -52,7 +52,7 @@ export const getCountry = (payload) => async (dispatch) => {
 }
 
 export const findCountry = (payload) => async (dispatch) => {
-    const response = await axios.get(`http://localhost:3001/countries?name=${payload}`)
+    const response = await axios.get(`/countries?name=${payload}`)
     return dispatch({
         type: SEARCH_COUNTRY,
         payload: response.data
