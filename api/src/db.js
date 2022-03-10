@@ -23,7 +23,7 @@ let sequelize =
       dialectOptions: {
         ssl: {
           require: true,
-          rejectUnauthortized: false
+          rejectUnauthorized: false
         },
         keepAlive: true
       },
